@@ -49,7 +49,7 @@
 					<button onClick={reset}>Reset</button>
 					<label htmlFor="invertBtn"> </label>
 					<button id="invertBtn" onClick={onInvert}>
-						{invert ? "Min >> Hour" : "Hour >> Min"}
+						{invert ? "Min > Hour" : "Hour > Min"}
 					</button>
 				</div>
 			);
@@ -97,7 +97,7 @@
 					<button onClick={reset}>Reset</button>
 					<label htmlFor="invert"> </label>
 					<button id="invert" onClick={onInvert}>
-						invert
+						{invert ? "km > mile" : "mile > km"}
 					</button>
 				</div>
 			);
@@ -144,8 +144,101 @@
 					<button onClick={reset}>Reset</button>
 					<label htmlFor="invert"> </label>
 					<button id="invert" onClick={onInvert}>
-						Invert
+						{invert ? "cm > inch" : "inch > cm"}
 					</button>
+				</div>
+			);
+		}
+		function FeetToYard() {
+			const [amount, setAmount] = React.useState(0);
+			const [invert, setInvert] = React.useState(false);
+
+			const onChange = (event) => setAmount(event.target.value);
+			const reset = () => setAmount(0);
+			const onInvert = () => {
+				reset();
+				setInvert((current) => !current);
+			};
+			return (
+				<div>
+					<h4>feet & yard</h4>
+					<div>
+						<label htmlFor="feet">feet: </label>
+						<input
+							id="feet"
+							value={invert ? amount * 3 : amount}
+							type="number"
+							placeholder="feet"
+							onChange={onChange}
+							disabled={invert}
+						/>
+					</div>
+					<p></p>
+					<div>
+						<label htmlFor="yard">yard: </label>
+						<input
+							id="yard"
+							value={invert ? amount : amount / 3}
+							type="number"
+							placeholder="yard"
+							onChange={onChange}
+							disabled={!invert}
+						/>
+					</div>
+					<p></p>
+
+					<button onClick={reset}>Reset</button>
+					<label htmlFor="invert"> </label>
+					<button onClick={onInvert}>
+						{invert ? "feet > yard" : "yard > feet"}
+					</button>
+				</div>
+			);
+		}
+		function LeeToMeter() {
+			const [amount, setAmount] = React.useState(0);
+			const [invert, setInvert] = React.useState(false);
+
+			const onChange = (event) => setAmount(event.target.value);
+			const reset = () => setAmount(0);
+			const onInvert = () => {
+				reset();
+				setInvert((current) => !current);
+			};
+			return (
+				<div>
+					<h4>리 & meter</h4>
+					<div>
+						<label htmlFor="lee">리(里): </label>
+						<input
+							id="lee"
+							value={invert ? amount * 0.03 : amount}
+							type="number"
+							placeholder="리"
+							onChange={onChange}
+							disabled={invert}
+						/>
+					</div>
+					<p></p>
+					<div>
+						<label htmlFor="meter">meter: </label>
+						<input
+							id="meter"
+							value={invert ? amount : amount * 392.727}
+							type="number"
+							placeholder="meter"
+							onChange={onChange}
+							disabled={!invert}
+						/>
+					</div>
+					<p></p>
+					<div>
+						<button onClick={reset}>Reset</button>
+						<label htmFor="invert"> </label>
+						<button id="invert" onClick={onInvert}>
+							{invert ? "리 > meter" : "meter > 리"}
+						</button>
+					</div>
 				</div>
 			);
 		}
@@ -157,18 +250,22 @@
 
 			return (
 				<div>
-					<h1>Super Converter</h1>
+					<h1>울트라캡숑 단위변환기</h1>
 					<select value={index} onChange={onSelect}>
 						<option value="x">-- Select Units --</option>
-						<option value="0">Mins & Hours</option>
-						<option value="1">km & Miles</option>
+						<option value="0">Minute & Hour</option>
+						<option value="1">km & Mile</option>
 						<option value="2">cm & inch</option>
+						<option value="3">feet & yard</option>
+						<option value="4">리(里) & meter</option>
 					</select>
 					<p></p>
-					{index === "x" ? "Please select Units" : null}
+					{index === "x" ? "변환하고 싶은 단위를 선택하세요." : null}
 					{index === "0" ? <MinToHours /> : null}
 					{index === "1" ? <KmToMiles /> : null}
 					{index === "2" ? <CmToInches /> : null}
+					{index === "3" ? <FeetToYard /> : null}
+					{index === "4" ? <LeeToMeter /> : null}
 				</div>
 			);
 		}
