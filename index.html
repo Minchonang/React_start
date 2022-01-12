@@ -1,5 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
+	<head>
+		<title>울트라캡숑 단위변환기</title>
+		<meta charset="utf-8" />
+		<link
+			rel="stylesheet"
+			href="http://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+		/>
+		<style>
+			* {
+				font-family: "SUIT", sans-serif;
+			}
+			h1 {
+				font-size: 40px;
+			}
+			h3 {
+				color: blue;
+			}
+			#resetBtn {
+				font-size: 20px;
+				color: red;
+				background-color: white;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+					0 1px 3px rgba(0, 0, 0, 0.08);
+			}
+			#resetBtn:active {
+				background-color: red;
+			}
+			#invertBtn {
+				font-size: 20px;
+				background-color: white;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+					0 1px 3px rgba(0, 0, 0, 0.08);
+			}
+			#invertBtn:active {
+				background-color: blue;
+			}
+			#resetBtn,
+			#invertBtn,
+			.selectUnits {
+				font-weight: bold;
+			}
+			.selectUnits {
+				font-size: 17px;
+			}
+		</style>
+	</head>
 	<body>
 		<div id="react"></div>
 	</body>
@@ -46,7 +94,9 @@
 						/>
 					</div>
 					<p></p>
-					<button onClick={reset}>Reset</button>
+					<button id="resetBtn" onClick={reset}>
+						Reset
+					</button>
 					<label htmlFor="invertBtn"> </label>
 					<button id="invertBtn" onClick={onInvert}>
 						{invert ? "Min > Hour" : "Hour > Min"}
@@ -94,9 +144,11 @@
 						></input>
 					</div>
 					<p></p>
-					<button onClick={reset}>Reset</button>
-					<label htmlFor="invert"> </label>
-					<button id="invert" onClick={onInvert}>
+					<button id="resetBtn" onClick={reset}>
+						Reset
+					</button>
+					<label htmlFor="invertBtn"> </label>
+					<button id="invertBtn" onClick={onInvert}>
 						{invert ? "km > mile" : "mile > km"}
 					</button>
 				</div>
@@ -141,9 +193,11 @@
 						/>
 					</div>
 					<p></p>
-					<button onClick={reset}>Reset</button>
-					<label htmlFor="invert"> </label>
-					<button id="invert" onClick={onInvert}>
+					<button id="resetBtn" onClick={reset}>
+						Reset
+					</button>
+					<label htmlFor="invertBtn"> </label>
+					<button id="invertBtn" onClick={onInvert}>
 						{invert ? "cm > inch" : "inch > cm"}
 					</button>
 				</div>
@@ -187,9 +241,11 @@
 					</div>
 					<p></p>
 
-					<button onClick={reset}>Reset</button>
-					<label htmlFor="invert"> </label>
-					<button onClick={onInvert}>
+					<button id="resetBtn" onClick={reset}>
+						Reset
+					</button>
+					<label htmlFor="invertBtn"> </label>
+					<button id="invertBtn" onClick={onInvert}>
 						{invert ? "feet > yard" : "yard > feet"}
 					</button>
 				</div>
@@ -207,7 +263,7 @@
 			};
 			return (
 				<div>
-					<h4>리 & meter</h4>
+					<h4>리(里) & meter</h4>
 					<div>
 						<label htmlFor="lee">리(里): </label>
 						<input
@@ -233,9 +289,11 @@
 					</div>
 					<p></p>
 					<div>
-						<button onClick={reset}>Reset</button>
-						<label htmFor="invert"> </label>
-						<button id="invert" onClick={onInvert}>
+						<button id="resetBtn" onClick={reset}>
+							Reset
+						</button>
+						<label htmFor="invertBtn"> </label>
+						<button id="invertBtn" onClick={onInvert}>
 							{invert ? "리 > meter" : "meter > 리"}
 						</button>
 					</div>
@@ -251,7 +309,7 @@
 			return (
 				<div>
 					<h1>울트라캡숑 단위변환기</h1>
-					<select value={index} onChange={onSelect}>
+					<select class="selectUnits" value={index} onChange={onSelect}>
 						<option value="x">-- Select Units --</option>
 						<option value="0">Minute & Hour</option>
 						<option value="1">km & Mile</option>
